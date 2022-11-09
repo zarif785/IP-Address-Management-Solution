@@ -1,15 +1,13 @@
 import { useState,useEffect} from "react"
-import IPList from "./IPList"
 
-const Home = () => {
-
-const [address,setAddress]=useState(null)
-const [isPending, setIsPending] = useState(true)
-const [error,setError]=useState(null)
+function useFetch(url){
+    const [data,setData]=useState(null)
+    const [isPending, setIsPending] = useState(true)
+    const [error,setError]=useState(null)
 
 
     useEffect(()=>{
-        fetch('http://localhost:8000/address').then(
+        fetch(url).then(
             (res)=>{
                 if(!res.ok){
                    throw Error("Could not fetch data from endpoint") 
@@ -18,7 +16,7 @@ const [error,setError]=useState(null)
             }).then(
 
                 (data)=>{
-                    setAddress(data);
+                    setData(data);
                     setIsPending(false);
                     setError(null);
                 }
@@ -27,16 +25,11 @@ const [error,setError]=useState(null)
                     setError(err.message)
                     setIsPending(false)
                 }
-            )},[])
+            )},[url])
 
-  return (
-    <div className="home">
-        {isPending && <div> Loading Data...</div>}
-        {error && <div> <h1>{error}</h1></div>}
-        {address && <IPList address={address}/>}
+            return { data ,error, isPending}
 
-    </div>
-  )
+            
 }
 
-export default Home
+export default useFetch;
