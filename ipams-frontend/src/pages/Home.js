@@ -5,7 +5,7 @@ import useFetch from "../customHooks/useFetch"
 const Home = () => {
 
 
-    const {data: address,error,isPending} = useFetch('http://localhost:8000/address')
+    const {data: address,error,isPending} = useFetch('http://localhost:8000/api/addresses')
 
 
   return (
