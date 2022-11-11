@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/addresses',[IP_AddressController::class,'index']);
+Route::post('/addresses',[IP_AddressController::class,'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

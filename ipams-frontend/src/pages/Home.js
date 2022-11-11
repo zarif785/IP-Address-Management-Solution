@@ -1,5 +1,6 @@
-import { useState,useEffect} from "react"
+
 import IPList from "../components/IPList"
+
 import useFetch from "../customHooks/useFetch"
 
 const Home = () => {
