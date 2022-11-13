@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\IP_Address;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -27,12 +28,25 @@ class IP_AddressController extends Controller
     }
 
     public function update(Request $request, IP_Address $ip_address){
-        
-        $formFields = $request->validate([
-            'label'=>'required'
-        ]);
 
-        return $ip_address->update($formFields);
+        $user =User::where('id',auth()->id())->first();
+        if($ip_address['user_id']==$user['id']){
+            $formFields = $request->validate([
+                'label'=>'required'
+            ]);
+    
+            return $ip_address->update($formFields);
+        }
+        $message='Not the owner of this post';
+        return $message;
+
+    }
+
+    public function myAddress(){
+        $id = auth()->id();
+        $address = IP_Address::where('user_id',$id)->get();
+        return 
+            $address;
     }
 
     

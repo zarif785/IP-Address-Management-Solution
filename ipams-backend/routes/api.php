@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IP_AddressController;
+use App\Http\Controllers\UserController;
 use App\Models\IP_Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,11 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/addresses',[IP_AddressController::class,'index']);
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
-
+Route::get('/users',[UserController::class,'index']);
 
 //Private Routes
 Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/addresses',[IP_AddressController::class,'store']);
     Route::put('/addresses/{ip_address}',[IP_AddressController::class,'update']);
     Route::post('/logout',[AuthController::class,'logout']);
+    Route::get('/myaddress',[IP_AddressController::class,'myAddress']);
 });

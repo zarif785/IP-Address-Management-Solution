@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Audits;
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 
 class AuthController extends Controller
 {
     public function register(Request $request){
-        auth()->user()->tokens()->delete();
+        // auth()->user()->tokens()->delete();
         $formFields = $request->validate(
             [
                 'name'=> 'required|string',
@@ -27,12 +29,17 @@ class AuthController extends Controller
                 'password'=>bcrypt($formFields['password'])
             ]);
 
+            if(auth('sanctum')->check()){
+                auth()->user()->tokens()->delete();
+            }
             $token = $user->createToken('bearer')->plainTextToken;
 
+            $mytime = Carbon::now();
 
             return [
                 'user'=>$user,
-                'token'=>$token
+                'token'=>$token,
+                'dateTime'=> $mytime->toDateTimeString()
             ];
     }
 
@@ -62,13 +69,21 @@ class AuthController extends Controller
                 ];
             }
 
+            if(auth('sanctum')->check()){
+                auth()->user()->tokens()->delete();
+            }
+
             $token = $user->createToken('bearer')->plainTextToken;
+            $user->touch();
 
-
+            Audits::create([
+                'user_id'=>$user['id'],
+                'looged_at'=>$user['updated_at']
+            ]);
+            
             return [
                 'user'=>$user,
                 'token'=>$token,
-                "sth"=>auth()->user()->tokens()
             ];
 
     }
