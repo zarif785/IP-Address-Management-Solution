@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Audits;
 use App\Models\IP_Address;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -24,21 +25,34 @@ class IP_AddressController extends Controller
         ]);
         $formFields['user_id'] = auth()->id();
         $data = IP_Address::create($formFields);
+
+        Audits::create([
+            'user_id'=>$data['user_id'],
+            'logged_at'=>$data['updated_at'],
+            'is_address_added'=>true
+
+        ]);
         return $data;
     }
 
     public function update(Request $request, IP_Address $ip_address){
 
-        $user =User::where('id',auth()->id())->first();
-        if($ip_address['user_id']==$user['id']){
+        
+        if($ip_address['user_id']==auth()->id()){
             $formFields = $request->validate([
                 'label'=>'required'
+            ]);
+            Audits::create([
+                'user_id'=>$ip_address['user_id'],
+                'logged_at'=>$ip_address['updated_at'],
+                'is_label_changed'=>true
+
             ]);
     
             return $ip_address->update($formFields);
         }
-        $message='Not the owner of this post';
-        return $message;
+        
+        return abort(403,"Not Authorized");
 
     }
 

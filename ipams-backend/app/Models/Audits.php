@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Audits extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id','logged_at'];
+    protected $fillable = ['user_id','isLogin','logged_at','isRegistered','is_address_added','is_label_changed'];
 }

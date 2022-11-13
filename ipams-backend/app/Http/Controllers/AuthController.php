@@ -34,6 +34,13 @@ class AuthController extends Controller
             }
             $token = $user->createToken('bearer')->plainTextToken;
 
+            Audits::create([
+                'user_id'=>$user['id'],
+                'logged_at'=>$user['updated_at'],
+                'isRegistered'=>true
+
+            ]);
+
             $mytime = Carbon::now();
 
             return [
@@ -78,7 +85,9 @@ class AuthController extends Controller
 
             Audits::create([
                 'user_id'=>$user['id'],
-                'looged_at'=>$user['updated_at']
+                'logged_at'=>$user['updated_at'],
+                'isLogin'=>true
+
             ]);
             
             return [
