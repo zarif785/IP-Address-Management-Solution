@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        IP_Address::factory(6)->create();
+        // IP_Address::factory(6)->create();
     }
 }

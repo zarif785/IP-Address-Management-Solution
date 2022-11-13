@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IP_AddressController;
 use App\Models\IP_Address;
 use Illuminate\Http\Request;
@@ -15,10 +16,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+//Public Routes
 Route::get('/addresses',[IP_AddressController::class,'index']);
-Route::post('/addresses',[IP_AddressController::class,'store']);
+Route::post('/register',[AuthController::class,'register']);
+Route::post('/login',[AuthController::class,'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+//Private Routes
+Route::group(['middleware'=>['auth:sanctum']],function(){
+    Route::post('/addresses',[IP_AddressController::class,'store']);
+    Route::put('/addresses/{ip_address}',[IP_AddressController::class,'update']);
+    Route::post('/logout',[AuthController::class,'logout']);
 });

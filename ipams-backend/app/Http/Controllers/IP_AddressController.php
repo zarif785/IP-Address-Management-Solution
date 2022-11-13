@@ -13,7 +13,7 @@ class IP_AddressController extends Controller
         return $data;
 
     }
-
+ 
     public function store(Request $request){
 
         $formFields = $request->validate([
@@ -21,9 +21,18 @@ class IP_AddressController extends Controller
             'label'=>'required'
 
         ]);
-
+        $formFields['user_id'] = auth()->id();
         $data = IP_Address::create($formFields);
         return $data;
+    }
+
+    public function update(Request $request, IP_Address $ip_address){
+        
+        $formFields = $request->validate([
+            'label'=>'required'
+        ]);
+
+        return $ip_address->update($formFields);
     }
 
     
