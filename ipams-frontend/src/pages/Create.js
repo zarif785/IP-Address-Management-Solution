@@ -1,59 +1,65 @@
-// import { useState } from "react"
-// import { useHistory } from "react-router-dom"
+import { useState } from "react"
+import { useHistory } from "react-router-dom"
+import swal from "sweetalert";
+import NavigationBar from "../components/NavigationBar";
 
-// const Create = () => {
+const Create = () => {
+    const [ip_address,setIp_address]=useState('');
+    const [label,setLabel] = useState('');
+    // const [isValid,setIsValid]=useState(false)
+    const [isPending, setIsPending] = useState(false)   
+    const [errorMessage,setErrorMessage] = useState(null)
+    let history =  useHistory()
+    
+    const token = localStorage.getItem('auth_token')
+    const handleSubmit = (e)=>{
+          e.preventDefault()
+          const address={ip_address,label}
+          console.log(JSON.stringify(address))
+          setIsPending(true)
+          fetch('http://localhost:8000/api/addresses',{
+            method:"POST",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json, text-plain, */*",
+                "Authorization":`Bearer ${token}`
+                },
 
-//   const [ip,setIP]=useState('');
-//   const [label,setLabel] = useState('');
-//   const [isValid,setIsValid]=useState(false)
-//   const [isPending, setIsPending] = useState(false)
+            body: JSON.stringify(address)
+        }).then((res)=>{
+          return res.json()
+        }).then((data)=>{
+          if(data.status!==200){
+            setErrorMessage(data.message)
+          }
+          else{
+            swal("Success",data.message,"success");
+            history.push('/')
+          }
+        })
+
   
-  
-//   const history = useHistory();
+    }
+  return (
+    <>
+    <NavigationBar/>
+    <div className="add">
+    <form action="" onSubmit={handleSubmit}>
+        <h2> Add your IP Address </h2>
+        {errorMessage &&  <span className='errors'>{errorMessage}</span>}
+        <label htmlFor="">IP Address: </label>
+        <input type="text" required value={ip_address} onChange={(e)=>{setIp_address(e.target.value)}}/>
+        <label htmlFor="">Label: </label>
+        <textarea required value={label} onChange={(e)=>{setLabel(e.target.value)}} cols="60" rows="3"></textarea>
+        { !isPending && <button> Add IP </button>}
+        { isPending && <button> Adding... </button>}
+        </form>
+    
 
-  
+    </div>
+    </>
+  )
+}
 
-//   const handleSubmit = (e)=>{
-//         e.preventDefault()
-//         const address={ip,label}
-
-//         fetch('http://localhost:8000/api/addresses',{
-//           method: "POST",
-//           headers:{
-//             'Content-Type': "application/json",
-//             "accept" : "application/json"
-//           },
-//           body: JSON.stringify(address)
-//         }).then((res)=>{
-//           console.log(res.json)
-//         })
-
-//   }
-
-//   // function ValidateIPaddress(ipaddress,label)
-//   //       {
-//   //       var ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-//   //       if(inputText.value.match(ipformat))
-//   //           {
-//   //           return true;
-//   //           }
-//   //       else
-//   //           {
-//   //           return false;
-//   //           }
-//   //       }
-//   return (
-//     <div className="add">
-//     <form action="" onSubmit={handleSubmit}>
-//         <h2> Add you IP Address </h2>
-//         <label htmlFor="">IP Address: </label>
-//         <input type="text" required value={ip} onChange={(e)=>{setIP(e.target.value)}}/>
-//         {/* <label htmlFor="">Label: </label>
-//         <textarea name="" id="" cols="60" rows="3"></textarea> */}
-//         <button> Add IP</button>
-//         </form>
-//     </div>
-//   )
-// }
-
-// export default Create
+export default Create

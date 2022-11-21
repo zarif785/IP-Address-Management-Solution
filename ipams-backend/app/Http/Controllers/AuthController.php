@@ -44,9 +44,11 @@ class AuthController extends Controller
             $mytime = Carbon::now();
 
             return [
-                'user'=>$user,
+                'status'=>200,
+                'username'=>$user->name,
+                'id'=>$user->id,
                 'token'=>$token,
-                'dateTime'=> $mytime->toDateTimeString()
+                'message'=>'Account created successfully'
             ];
     }
 
@@ -54,6 +56,7 @@ class AuthController extends Controller
         auth()->user()->tokens()->delete();
 
         return [
+            'status'=>200,
             'message' => 'Logged out'
         ];
     }
@@ -91,8 +94,11 @@ class AuthController extends Controller
             ]);
             
             return [
-                'user'=>$user,
+                'status'=>200,
+                'id'=>$user->id,
+                'username'=>$user->name,
                 'token'=>$token,
+                'message'=>'Logged in Successfully'
             ];
 
     }

@@ -23,9 +23,10 @@ Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 Route::get('/users',[UserController::class,'index']);
 
+
 //Private Routes
 Route::group(['middleware'=>['auth:sanctum']],function(){
-    Route::post('/addresses',[IP_AddressController::class,'store']);
+   Route::post('/addresses',[IP_AddressController::class,'store']);
     Route::put('/addresses/{ip_address}',[IP_AddressController::class,'update']);
     Route::post('/logout',[AuthController::class,'logout']);
     Route::get('/myaddress',[IP_AddressController::class,'myAddress']);

@@ -83,6 +83,7 @@
 .add h2 {
   font-size: 20px;
   color: #f1356d;
+  margin-top: 15px;
   margin-bottom: 30px;
 }
 .add input, .create textarea, .create select {
@@ -93,12 +94,18 @@
   box-sizing: border-box;
   display: block;
 }
-.add button {
+.add button,.logout-button  {
   background: #f1356d;
   color: #fff;
   border: 0;
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+  margin-left: 10px;
+}
+
+.errors{
+  color: red;
+
 }
 

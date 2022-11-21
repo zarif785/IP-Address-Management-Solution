@@ -2,6 +2,7 @@
 import IPList from "../components/IPList"
 
 import useFetch from "../customHooks/useFetch"
+import NavigationBar from "../components/NavigationBar"
 
 const Home = () => {
 
@@ -10,7 +11,9 @@ const Home = () => {
 
 
   return (
+    
     <div className="home">
+      <NavigationBar/>
         {isPending && <div> Loading Data...</div>}
         {error && <div> <h1>{error}</h1></div>}
         {address && <IPList address={address}/>}

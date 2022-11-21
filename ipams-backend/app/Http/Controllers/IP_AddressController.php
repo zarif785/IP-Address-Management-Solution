@@ -32,7 +32,10 @@ class IP_AddressController extends Controller
             'is_address_added'=>true
 
         ]);
-        return $data;
+        return [
+            'status'=>200,
+            'message'=>"IP Added Successfully"
+        ];
     }
 
     public function update(Request $request, IP_Address $ip_address){
