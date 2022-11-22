@@ -22,8 +22,9 @@ const NavigationBar = () => {
     
   }).then((data)=>{
     if(data.status === 200){
-      localStorage.removeItem("auth_token")
-      localStorage.removeItem("user_id")
+      // localStorage.removeItem("auth_token")
+      // localStorage.removeItem("user_id")
+      localStorage.clear()
       swal("Success",data.message,'success')
       history.push('/login')
     }

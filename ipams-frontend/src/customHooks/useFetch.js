@@ -1,13 +1,17 @@
 import { useState,useEffect} from "react"
 
-function useFetch(url){
+function useFetch(url,token=''){
     const [data,setData]=useState(null)
     const [isPending, setIsPending] = useState(true)
     const [error,setError]=useState(null)
 
 
     useEffect(()=>{
-        fetch(url).then(
+        fetch(url,{
+            headers:{
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(
             (res)=>{
                 if(!res.ok){
                    throw Error("Could not fetch data from endpoint") 

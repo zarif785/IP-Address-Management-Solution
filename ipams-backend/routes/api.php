@@ -18,16 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Public Routes
-Route::get('/addresses',[IP_AddressController::class,'index']);
-Route::post('/register',[AuthController::class,'register']);
-Route::post('/login',[AuthController::class,'login']);
-Route::get('/users',[UserController::class,'index']);
+Route::get('/addresses',[IP_AddressController::class,'index']); //Done
+Route::post('/register',[AuthController::class,'register']); //Done
+Route::post('/login',[AuthController::class,'login']); //Done
+Route::get('/users',[UserController::class,'index']); //No Need
 
 
 //Private Routes
 Route::group(['middleware'=>['auth:sanctum']],function(){
-   Route::post('/addresses',[IP_AddressController::class,'store']);
+   Route::post('/addresses',[IP_AddressController::class,'store']); //Done
     Route::put('/addresses/{ip_address}',[IP_AddressController::class,'update']);
-    Route::post('/logout',[AuthController::class,'logout']);
+    Route::post('/logout',[AuthController::class,'logout']); //Done
     Route::get('/myaddress',[IP_AddressController::class,'myAddress']);
 });

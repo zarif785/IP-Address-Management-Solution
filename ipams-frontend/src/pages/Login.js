@@ -59,8 +59,7 @@ const handleSubmit=(e)=>{
   return (
     <>
     <NavigationBar/>
-    <div className="add">
-      
+    <div className="add">  
     <form action="" onSubmit={handleSubmit}>
         <h2> Login</h2>
         {errorMessage &&  <span className='errors'>{errorMessage}</span>}

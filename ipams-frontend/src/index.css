@@ -94,7 +94,7 @@
   box-sizing: border-box;
   display: block;
 }
-.add button,.logout-button  {
+.add button,.logout-button, .edit-button {
   background: #f1356d;
   color: #fff;
   border: 0;
@@ -107,5 +107,9 @@
 .errors{
   color: red;
 
+}
+
+.show {
+  text-align: center;
 }
 

@@ -16,6 +16,7 @@ class VerifyCsrfToken extends Middleware
         'http://localhost:8000/api/register',
         'http://localhost:8000/api/login',
         'http://localhost:8000/api/logout',
+        'http://localhost:8000/api/addresses/*'
 
     ];
 }

@@ -52,8 +52,8 @@ const Create = () => {
         <input type="text" required value={ip_address} onChange={(e)=>{setIp_address(e.target.value)}}/>
         <label htmlFor="">Label: </label>
         <textarea required value={label} onChange={(e)=>{setLabel(e.target.value)}} cols="60" rows="3"></textarea>
-        { !isPending && <button> Add IP </button>}
-        { isPending && <button> Adding... </button>}
+        { <button> Add IP </button>}
+        
         </form>
     
 

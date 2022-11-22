@@ -51,8 +51,12 @@ class IP_AddressController extends Controller
                 'is_label_changed'=>true
 
             ]);
+            $ip_address->update($formFields);
     
-            return $ip_address->update($formFields);
+            return [
+                "status"=>200,
+                "message"=> "Label Updated"
+            ];
         }
         
         return abort(403,"Not Authorized");
