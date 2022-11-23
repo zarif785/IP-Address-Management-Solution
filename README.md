@@ -17,14 +17,20 @@ This web based application allows users to add an IP address and assign a label 
 
 ## Functionalities
 GET: http://localhost:8000/api/addresses - Fetches all the IP addresses and label posted by all users
+
 GET: http://localhost:8000/api/myaddress- Fetches IP address and label for a particular user using authentication token
+
 GET: http://localhost:8000/api/log/${id} - Fetches the users activities log 
+
 POST:http://localhost:8000/api/addresses - Creates IP address along with its label
+
 PUT :http://localhost:8000/api/addresses/${ip_id} - Updates the label of an IP address
 
 Authentication:
 POST: http://localhost:8000/api/register - Registers Users
+
 POST: http://localhost:8000/api/login - Logs in user
+
 POST: http://localhost:8000/api/logout - Logs out user.
 
 
