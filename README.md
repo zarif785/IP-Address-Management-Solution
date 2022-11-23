@@ -7,7 +7,7 @@ A web based IP address management solution which allows users to view and record
 
 This web based application allows users to add an IP address and assign a label to it. The user can register, login and only then they can add an IP Address. The user can also check their entries and edit the label. An audit log is also implemented for the user to check their activities.
 
-##UI
+## UI
 <img width="981" alt="Screen Shot 2022-11-23 at 10 17 42 PM" src="https://user-images.githubusercontent.com/63856140/203597331-737543dc-74a4-4c8a-8ba3-f9ae06381d47.png">
 <img width="969" alt="Screen Shot 2022-11-23 at 10 22 49 PM" src="https://user-images.githubusercontent.com/63856140/203597407-5ee2a1bb-9d3e-4f9d-8599-f3522f99a303.png">
 <img width="927" alt="Screen Shot 2022-11-23 at 10 21 41 PM" src="https://user-images.githubusercontent.com/63856140/203597536-9affd166-bac4-45f1-bc35-e929f1c12450.png">
