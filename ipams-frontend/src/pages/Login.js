@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import swal from 'sweetalert'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios';
+import { Link } from 'react-router-dom'
 import NavigationBar from '../components/NavigationBar';
 const Login = () => {
 
@@ -72,6 +72,8 @@ const handleSubmit=(e)=>{
 
         <button>Login</button>
         </form>
+
+        <p> Don't have an account?  <b> <Link to='/register'> Sign Up </Link></b></p>
     </div>
     </>
   )

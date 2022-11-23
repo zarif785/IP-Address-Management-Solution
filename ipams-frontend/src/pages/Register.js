@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import swal from 'sweetalert'
 import { useHistory } from 'react-router-dom'
-import axios  from 'axios'
+import { Link } from 'react-router-dom'
 import NavigationBar from '../components/NavigationBar'
 
 
@@ -92,6 +92,8 @@ const Register = () => {
 
         <button> Sign Up</button>
         </form>
+
+        <p> Already have an account?  <b> <Link to='/login'> Login </Link></b></p>
     </div>
     </>
   )

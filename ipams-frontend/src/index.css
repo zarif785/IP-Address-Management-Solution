@@ -105,6 +105,10 @@
   margin-left: 10px;
 }
 
+.add a {
+  color: #f1356d;
+}
+
 .errors{
   color: red;
 
