@@ -27,6 +27,7 @@ POST:http://localhost:8000/api/addresses - Creates IP address along with its lab
 PUT :http://localhost:8000/api/addresses/${ip_id} - Updates the label of an IP address
 
 Authentication:
+
 POST: http://localhost:8000/api/register - Registers Users
 
 POST: http://localhost:8000/api/login - Logs in user
