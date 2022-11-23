@@ -84,7 +84,7 @@ class AuthController extends Controller
             }
 
             $token = $user->createToken('bearer')->plainTextToken;
-            $user->touch();
+            // $user->touch();
 
             Audits::create([
                 'user_id'=>$user['id'],

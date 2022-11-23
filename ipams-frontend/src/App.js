@@ -7,11 +7,8 @@ import Login from './pages/Login';
 import axios from 'axios';
 import UserIP from './pages/UserIP';
 import Edit from './pages/Edit';
+import UserLog from './pages/UserLog';
 
-
-axios.defaults.baseURL='http://localhost:8000/';
-axios.defaults.headers.post["Content-Type"]="application/json";
-axios.defaults.headers.post["Accept"]="application/json "
 
 function App() {
   return (
@@ -37,6 +34,9 @@ function App() {
             </Route>
             <Route path = "/edit/:id">
               <Edit/>
+            </Route>
+            <Route path = "/log">
+              <UserLog/>
             </Route>
           </Switch>
           

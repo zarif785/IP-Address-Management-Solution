@@ -77,8 +77,9 @@
   text-align: center;
 }
 .add label {
-  text-align: left;
+  text-align: center;
   display: block;
+  font-style: italic;
 }
 .add h2 {
   font-size: 20px;
@@ -94,7 +95,7 @@
   box-sizing: border-box;
   display: block;
 }
-.add button,.logout-button, .edit-button {
+.add button,.logout-button{
   background: #f1356d;
   color: #fff;
   border: 0;
@@ -109,7 +110,39 @@
 
 }
 
-.show {
+
+
+.home,.show{
+  padding: 20px;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.show{
   text-align: center;
 }
+.home h3,.show h3{
+  color: #f1356d;
+}
+.show h2{
+  text-align: center;
+  color: #f1356d;
+}
+
+
+.edit-button{
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 8px;
+
+}
+
+
+
+
 

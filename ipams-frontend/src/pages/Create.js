@@ -28,6 +28,7 @@ const Create = () => {
 
             body: JSON.stringify(address)
         }).then((res)=>{
+          setIsPending(false)
           return res.json()
         }).then((data)=>{
           if(data.status!==200){
@@ -48,11 +49,12 @@ const Create = () => {
     <form action="" onSubmit={handleSubmit}>
         <h2> Add your IP Address </h2>
         {errorMessage &&  <span className='errors'>{errorMessage}</span>}
-        <label htmlFor="">IP Address: </label>
+        <label htmlFor="">IP Address </label>
         <input type="text" required value={ip_address} onChange={(e)=>{setIp_address(e.target.value)}}/>
-        <label htmlFor="">Label: </label>
+        <label htmlFor="">Label </label>
         <textarea required value={label} onChange={(e)=>{setLabel(e.target.value)}} cols="60" rows="3"></textarea>
-        { <button> Add IP </button>}
+        { !isPending && <button> Add IP </button>}
+        { isPending && <button> Adding... </button>}
         
         </form>
     

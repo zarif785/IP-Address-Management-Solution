@@ -1,6 +1,6 @@
 
 import IPList from "../components/IPList"
-
+import { useState } from "react"
 import useFetch from "../customHooks/useFetch"
 import NavigationBar from "../components/NavigationBar"
 
@@ -10,6 +10,7 @@ const Home = () => {
     const {data: address,error,isPending} = useFetch('http://localhost:8000/api/addresses')
 
 
+   
   return (
     
     <div className="home">

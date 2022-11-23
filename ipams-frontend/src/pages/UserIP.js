@@ -15,7 +15,7 @@ const UserIP = () => {
         <div className='show'>
             <h2> My IP Addresses </h2>
             {isPending && <div> Loading Data...</div>}
-            {error && <div> <h1>{error}</h1></div>}
+            {error && <div> <h3>{error}</h3></div>}
             {address && <IPList address={address} canEdit={true}/>}
             
         </div>

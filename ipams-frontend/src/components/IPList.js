@@ -18,9 +18,9 @@ function onEdit(address){
             address.map(function(addr){
                 return(
                     <div className="ip-preview" key={addr.id}>
-                        <h2>{addr.ip_address}</h2>
+                        <h3>{addr.ip_address}</h3>
                         <p>{addr.label}</p>
-                        {canEdit && <button className='edit-button' onClick={()=>{onEdit(addr)}}> Edit Now </button>}
+                        {canEdit && <button type='submit' className='edit-button' onClick={()=>{onEdit(addr)}}> Edit Now </button>}
                         {/* <Link> Edit </Link> */}
                     </div>
                 )

@@ -10,6 +10,7 @@ const Edit = () => {
     const token = localStorage.getItem('auth_token')
     const [label,setLabel] = useState(localStorage.getItem('user_label'));
     const [errorMessage,setErrorMessage] = useState(null)
+    const [isPending, setIsPending] = useState(false)   
     const ip_address = localStorage.getItem('user_ip')
 
     const history = useHistory()
@@ -21,6 +22,7 @@ const Edit = () => {
             label:label
             
         }
+        setIsPending(true)
       
         fetch(`http://localhost:8000/api/addresses/${id}`,{
             method: "PUT",
@@ -31,6 +33,7 @@ const Edit = () => {
             },
             body: JSON.stringify(data)
         }).then((response)=>{
+            setIsPending(false)
             return response.json();
         }).then((data)=>{
             if(data.status!==200){
@@ -54,14 +57,15 @@ const Edit = () => {
     <NavigationBar/>
     <div className="add">
     <form action="" onSubmit={handleSubmit}>
-        <h2> Add your IP Address </h2>
+        <h2> Edit your IP Address </h2>
         {errorMessage &&  <span className='errors'>{errorMessage}</span>}
-        <label htmlFor="">IP Address: </label>
+        <label htmlFor="">IP Address </label>
         <h2>{ip_address}</h2>
-        <label htmlFor="">Label: </label>
+        <label htmlFor="">Label </label>
         <textarea cols="60" rows="3" value={label} onChange={(e)=>{setLabel(e.target.value)}}></textarea>
        
-        { <button className='edit-button'> Add IP </button>}
+        { !isPending && <button> Edit Label </button>}
+        { isPending && <button> Editing... </button>}
         </form>
     
 

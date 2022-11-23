@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IP_AddressController;
 use App\Http\Controllers\UserController;
@@ -26,8 +27,9 @@ Route::get('/users',[UserController::class,'index']); //No Need
 
 //Private Routes
 Route::group(['middleware'=>['auth:sanctum']],function(){
-   Route::post('/addresses',[IP_AddressController::class,'store']); //Done
+    Route::post('/addresses',[IP_AddressController::class,'store']); //Done
     Route::put('/addresses/{ip_address}',[IP_AddressController::class,'update']);
     Route::post('/logout',[AuthController::class,'logout']); //Done
-    Route::get('/myaddress',[IP_AddressController::class,'myAddress']);
+    Route::get('/myaddress',[IP_AddressController::class,'myAddress']);//Done
+    Route::get('/log/{id}',[AuditController::class,'show']);//Done
 });

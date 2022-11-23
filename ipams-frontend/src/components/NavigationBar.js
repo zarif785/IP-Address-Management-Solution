@@ -36,6 +36,7 @@ const NavigationBar = () => {
       <>
             <Link to='/create'> Add IP</Link>
             <Link to='/show'>My IP</Link>
+            <Link to='/log'>User Log</Link>
             <button className='logout-button' onClick={logoutSubmit}>Logout</button>
 
       </>
